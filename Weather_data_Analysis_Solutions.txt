@@ -1,0 +1,85 @@
+Q. 1)  Find all the unique 'Wind Speed' values in the data.
+
+	WD['Wind Speed_km/h'].unique()
+
+
+Q. 2) Find the number of times when the 'Weather is exactly Clear'.
+
+	#value_counts
+		WD['Weather Conditions'].value_counts()['Clear']
+
+	#filtering
+		WD[WD['Weather']=='Clear']
+
+	#groupby-Similer to filtering 
+		WD.groupby('Weather').get_group('Clear')
+
+
+Q. 3) Find the number of times when the 'Wind Speed was exactly 4 km/h'.
+
+	WD['Wind Speed_km/h'].value_counts()[4]
+	
+Q. 4) Find out all the Null Values in the data.
+
+	WD.isnull().sum()
+
+
+Q. 5) Rename the column name 'Weather' of the dataframe to 'Weather Condition'.
+
+	WD.rename(columns={'Weather':'Weather Conditions'},inplace=True)
+	WD
+
+	
+Q. 6) What is the mean 'Visibility' ?
+
+	WD.Visibility_km.mean()
+
+
+Q. 7) What is the Standard Deviation of 'Pressure'  in this data?
+
+	WD.Press_kPa.std()
+
+
+Q. 8) What is the Variance of 'Relative Humidity' in this data ?
+
+	WD['Rel Hum_%'].var()
+
+
+Q. 9) Find all instances when 'Snow' was recorded.
+
+	WD[WD['Weather Conditions'].str.contains('Snow')]
+
+
+Q. 10) Find all instances when 'Wind Speed is above 24' and 'Visibility is 25'.
+
+	WD[(WD['Wind Speed_km/h']>24) & (WD['Visibility_km']==25)]
+
+
+Q. 11) What is the Mean value of each column against each 'Weather Condition ?
+
+	WD.groupby('Weather Conditions').mean(numeric_only=True)
+
+
+Q. 12) What is the Minimum & Maximum value of each column against each 'Weather Condition ?
+
+	WD.groupby('Weather Conditions').min( )
+	WD.groupby('Weather Conditions').max( )
+
+
+Q. 13) Show all the Records where Weather Condition is Fog.
+
+	WD[WD['Weather Conditions'].str.contains('Fog')]
+
+
+Q. 14) Find all instances when 'Weather is Clear' or 'Visibility is above 40'.
+
+	WD[(WD['Weather Conditions'] =='Clear') | (WD['Visibility_km']>40)]
+
+
+Q. 15) Find all instances when :
+A. 'Weather is Clear' and 'Relative Humidity is greater than 50'
+or
+B. 'Visibility is above 40
+
+
+	WD[(WD['Weather Conditions'] =='Clear') & (WD['Rel Hum_%']>50) | (WD['Visibility_km']>40) ]
